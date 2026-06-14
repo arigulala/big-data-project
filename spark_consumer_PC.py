@@ -102,15 +102,11 @@ def write_raw(batch_df, batch_id):
 query_raw = (
 
     parsed.writeStream
-
+    
     .outputMode("append")
-
     .foreachBatch(write_raw)
-
     .option("checkpointLocation", "/tmp/checkpoints/raw")
-
     .trigger(processingTime="10 seconds")
-
     .start()
 
 )
@@ -144,13 +140,9 @@ query_stats = (
     stats.writeStream
 
     .outputMode("append")
-
     .foreachBatch(write_stats)
-
     .option("checkpointLocation", "/tmp/checkpoints/stats")
-
     .trigger(processingTime="10 seconds")
-
     .start()
 
 )
